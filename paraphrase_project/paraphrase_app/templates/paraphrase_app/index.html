@@ -1,0 +1,49 @@
+{% extends 'paraphrase_app/base.html' %}
+{% block title %} Home | Paraphrase Tool {% endblock %}
+
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+
+
+<div class="container">
+    <div class="jumbotron m-5">
+        <h3>Real Text</h3>
+        <form class="form" method="post">
+            {% csrf_token %}
+            <textarea id="paraphrase_content" name="paraphrase_content" class="form-control" rows="10" cols="50">{{real_text}}</textarea>
+            
+            <input id="Paraphrase" type="submit" class="btn btn-primary mt-2" value="Paraphrase">
+
+        </form>
+        
+    </div>
+</div>
+
+
+<div class="container">
+
+    {% if paraphrased_data %}
+
+        <div class="jumbotron m-5">
+
+            <h3>Paraphrased Text</h3>
+        
+            <textarea id="paraphrase_content" class="form-control" rows="10" cols="50">{{ paraphrased_data }}</textarea>
+        
+        </div>
+    {% elif get %}
+        <br>
+    {% else %}
+
+        <div class="jumbotron m-5">
+        
+            <h3>Please Enter a Bit Long Text</h3>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
