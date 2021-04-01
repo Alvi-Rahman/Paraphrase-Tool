@@ -47,8 +47,8 @@ class ParaphraseTool:
         beam_outputs = self.__model.generate(
             input_ids=input_ids, attention_mask=attention_masks,
             do_sample=True,
-            min_length=len(text.split()) - 5,
-            max_length=len(text.split()) + 15,
+            min_length=max(len(text.split()) - 5 , 5),
+            max_length=len(text.split()) + 10,
             top_k=120,
             top_p=0.95,
             temperature=0.98,
